@@ -1,0 +1,27 @@
+{
+  "name": "zestic/app-library",
+  "type": "library",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "require": {
+    "php": ">=7.2",
+    "tuupola/cors-middleware": "^0.7.0"
+  },
+  "require-dev": {
+    "codeception/aspect-mock": "dev-master",
+    "codeception/codeception": "^2.3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Fixture\\": "tests/_support/fixture",
+      "Tests\\Functional\\": "tests/functional",
+      "Tests\\Unit\\": "tests/unit"
+    }
+  }
+}
