@@ -10,6 +10,8 @@ class CorsMiddlewareFactory
 {
     public function __invoke(ContainerInterface $container): CorsMiddleware
     {
-        $config =
+        $config = $container->get('config');
+        
+        return new CorsMiddleware($config['middleware']['cors']);
     }
 }

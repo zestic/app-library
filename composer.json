@@ -6,6 +6,7 @@
   "license": "MIT",
   "require": {
     "php": ">=7.2",
+    "psr/container": "^1.0",
     "tuupola/cors-middleware": "^0.7.0"
   },
   "require-dev": {
@@ -19,7 +20,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Fixture\\": "tests/_support/fixture",
+      "Tests\\Fixture\\": "tests/_support/Fixture",
       "Tests\\Functional\\": "tests/functional",
       "Tests\\Unit\\": "tests/unit"
     }
