@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Common\Jwt\Interactor;
 
+use App\Jwt\JwtConfiguration;
 use Common\Interactor\StdClassToArray;
-use Common\Jwt\JwtConfiguration;
 use Firebase\JWT\JWT;
 
 class DecodeJwtToken

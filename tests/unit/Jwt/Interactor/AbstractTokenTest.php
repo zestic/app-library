@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Jwt\Interactor;
 
-use Common\Jwt\JwtConfiguration;
+use App\Jwt\JwtConfiguration;
 
 abstract class AbstractTokenTest
 {

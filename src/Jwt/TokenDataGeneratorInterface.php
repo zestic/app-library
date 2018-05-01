@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Common\Jwt;
+namespace App\Jwt;
 
 use Common\Entity\UserInterface;
 

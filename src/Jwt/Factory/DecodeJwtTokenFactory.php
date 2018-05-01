@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Common\Jwt\Factory;
+namespace App\Jwt\Factory;
 
-use Common\Jwt\Interactor\DecodeJwtToken;
-use Common\Jwt\JwtConfiguration;
+use App\Jwt\Interactor\DecodeJwtToken;
+use App\Jwt\JwtConfiguration;
 use Psr\Container\ContainerInterface;
 
 class DecodeJwtTokenFactory

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Jwt\Factory;
 
+use App\Jwt\Factory\JwtConfigurationFactory;
 use ArrayObject;
-use Common\Jwt\Factory\JwtConfigurationFactory;
 use Tests\Fixture\TestContainer;
 use UnitTester;
 

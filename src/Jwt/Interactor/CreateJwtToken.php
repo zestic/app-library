@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Common\Jwt\Interactor;
+namespace App\Jwt\Interactor;
 
+use App\Jwt\JwtConfiguration;
+use App\Jwt\TokenDataGeneratorInterface;
 use Carbon\Carbon;
 use Common\Entity\UserInterface;
-use Common\Jwt\JwtConfiguration;
-use Common\Jwt\TokenDataGeneratorInterface;
 use Firebase\JWT\JWT;
 
 class CreateJwtToken

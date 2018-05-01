@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Common\Jwt\Factory;
+namespace App\Jwt\Factory;
 
-use Common\Jwt\Interactor\CreateJwtToken;
-use Common\Jwt\JwtConfiguration;
-use Common\Jwt\TokenDataGeneratorInterface;
+use App\Jwt\Interactor\CreateJwtToken;
+use App\Jwt\JwtConfiguration;
+use App\Jwt\TokenDataGeneratorInterface;
 use Psr\Container\ContainerInterface;
 
 class CreateJwtTokenFactory

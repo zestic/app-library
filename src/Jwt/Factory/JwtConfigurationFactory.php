@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Common\Jwt\Factory;
+namespace App\Jwt\Factory;
 
 use Common\Exception\ConfigurationException;
-use Common\Jwt\JwtConfiguration;
+use App\Jwt\JwtConfiguration;
 use Exception;
 use Psr\Container\ContainerInterface;
 
