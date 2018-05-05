@@ -22,27 +22,4 @@ class OperationMapping implements ServiceHandlerInterface
 
         return $service->handle($communique);
     }
-
-    /**
-     * @param $service
-     * @param $fieldName
-     * @return \GraphQLMiddleware\Resolver\ResolverInterface
-     * @throws ResolveException
-     */
-    private function getResolverService($service, $fieldName) {
-
-        $service = $this->getServiceName($service);
-
-        if (!$this->container->has($service)) {
-            throw new ResolveException(sprintf('Resolve service "%s" not found for field "%s"', $service, $fieldName));
-        }
-
-        $serviceInstance = $this->container->get($service);
-
-        if (!in_array(ResolverInterface::class, class_implements($service))) {
-            throw new ResolveException(sprintf('Resolver service "%s" for field "%s" must implement interface "%s"', $service, $fieldName, ResolverInterface::class));
-        }
-
-        return $serviceInstance;
-    }
 }

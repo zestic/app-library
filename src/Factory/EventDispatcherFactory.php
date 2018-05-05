@@ -16,8 +16,8 @@ class EventDispatcherFactory
         foreach ($events as $eventClass => $classEvents) {
             foreach ($classEvents as $step => $listeners) {
                 $eventName = $eventClass . '.' . $step;
-                foreach ($listeners as $listener => $method) {
-                    $dispatcher->addListener($eventName, [$container->get($listener), $method]);
+                foreach ($listeners as $listener) {
+                    $dispatcher->addListener($eventName, $container->get($listener));
                 }
             }
         }
