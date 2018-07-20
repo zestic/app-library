@@ -8,18 +8,11 @@
     "nesbot/carbon": "^1.27",
     "php": ">=7.2",
     "psr/container": "^1.0",
-    "tuupola/cors-middleware": "^0.7.0",
-    "zestic/common": "dev-master"
+    "tuupola/cors-middleware": "^0.7.0"
   },
   "require-dev": {
     "codeception/aspect-mock": "dev-master",
     "codeception/codeception": "^2.3.8"
-  },
-  "repositories": {
-    "zestic/common": {
-      "type": "vcs",
-      "url": "git@github.com:zestic/common.git"
-    }
   },
   "minimum-stability": "dev",
   "autoload": {
