@@ -6,13 +6,14 @@ namespace App\Jwt\Interactor;
 use App\Jwt\JwtConfiguration;
 use App\Jwt\TokenDataGeneratorInterface;
 use Carbon\Carbon;
-use Common\Entity\UserInterface;
+use App\Entity\Interfaces\UserInterface;
 use Firebase\JWT\JWT;
 
 class CreateJwtToken
 {
-    /** @var array */
+    /** @var \App\Jwt\JwtConfiguration */
     private $config;
+    /** @var \App\Jwt\TokenDataGeneratorInterface */
     private $tokenDataGenerator;
 
     public function __construct(JwtConfiguration $config, TokenDataGeneratorInterface $tokenDataGenerator)

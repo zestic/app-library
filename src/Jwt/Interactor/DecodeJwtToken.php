@@ -1,10 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Common\Jwt\Interactor;
+namespace App\Jwt\Interactor;
 
 use App\Jwt\JwtConfiguration;
-use Common\Interactor\StdClassToArray;
 use Firebase\JWT\JWT;
 
 class DecodeJwtToken
