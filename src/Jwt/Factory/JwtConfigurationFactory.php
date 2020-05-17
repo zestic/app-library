@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Jwt\Factory;
 
-use Common\Exception\ConfigurationException;
+use App\Exception\ConfigurationException;
 use App\Jwt\JwtConfiguration;
 use Exception;
 use Psr\Container\ContainerInterface;

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Jwt;
 
-use App\Entity\UserInterface;
+use App\Entity\Interfaces\UserInterface;
 
 interface TokenDataGeneratorInterface
 {

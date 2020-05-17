@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Jwt\Interactor;
 
+use App\Entity\Interfaces\UserInterface;
 use App\Jwt\JwtConfiguration;
 use App\Jwt\TokenDataGeneratorInterface;
 use Carbon\Carbon;
-use App\Entity\Interfaces\UserInterface;
 use Firebase\JWT\JWT;
 
 class CreateJwtToken
@@ -18,8 +18,8 @@ class CreateJwtToken
 
     public function __construct(JwtConfiguration $config, TokenDataGeneratorInterface $tokenDataGenerator)
     {
-        $this->tokenDataGenerator = $tokenDataGenerator;
         $this->config = $config;
+        $this->tokenDataGenerator = $tokenDataGenerator;
     }
 
     public function handle(UserInterface $user): string

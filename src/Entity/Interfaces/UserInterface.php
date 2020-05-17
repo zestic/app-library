@@ -5,10 +5,7 @@ namespace App\Entity\Interfaces;
 
 use Mezzio\Authentication\UserInterface as MezzioInterface;
 
-use Ramsey\Uuid\Uuid;
-
 interface UserInterface extends MezzioInterface
 {
-    public function getCredential();
-    public function getPersonId(): Uuid;
+    public function getPersonId(): string;
 }
