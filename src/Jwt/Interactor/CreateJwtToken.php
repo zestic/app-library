@@ -28,8 +28,6 @@ class CreateJwtToken
         $data = $tokenData->getData();
         $data['exp'] = Carbon::now()->addSecond($this->config->getTokenTtl())->getTimestamp();
 
-        $jwt = JWT::encode($data, $this->config->getPrivateKey(), $this->config->getAlgorithm());
-
-        return $jwt;
+        return JWT::encode($data, $this->config->getPrivateKey(), $this->config->getAlgorithm());
     }
 }
