@@ -5,7 +5,7 @@ namespace App\Entity;
 
 use Ramsey\Uuid\Uuid;
 
-trait IdTrait
+trait UuidTrait
 {
     /** @var Uuid */
     protected $id;
