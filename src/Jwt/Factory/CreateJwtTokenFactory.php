@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Jwt\Factory;
 
+use App\Domain\Jwt\TokenDataGenerator;
 use App\Jwt\Interactor\CreateJwtToken;
 use App\Jwt\JwtConfiguration;
 use Psr\Container\ContainerInterface;
-use Zapi\Domain\Jwt\TokenDataGenerator;
 
 class CreateJwtTokenFactory
 {
