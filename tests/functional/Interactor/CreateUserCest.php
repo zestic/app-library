@@ -5,6 +5,7 @@ namespace Tests\Functional\Interactor;
 
 use App\DTO\NewUser;
 use App\Exception\UserException;
+use App\Factory\PDOFactory;
 use App\Interactor\CreateUser;
 use FunctionalTester;
 use Ramsey\Uuid\UuidInterface;
@@ -74,17 +75,8 @@ class CreateUserCest
 
     private function getCreateUser(): CreateUser
     {
-        $parts = explode('_', getenv('DATABASE_DRIVER'));
-        $driver = array_pop($parts);
+        $pdo = (new PDOFactory())->createPDO();
 
-        $config = [
-            'driver'   => $driver,
-            'host'     => getenv('DATABASE_HOST'),
-            'name'     => getenv('DATABASE_NAME'),
-            'password' => getenv('DATABASE_PASSWORD'),
-            'user'     => getenv('DATABASE_USER'),
-        ];
-
-        return new CreateUser($config);
+        return new CreateUser($pdo);
     }
 }

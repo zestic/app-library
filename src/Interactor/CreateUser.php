@@ -13,10 +13,9 @@ final class CreateUser
     /** @var \PDO */
     private $pdo;
 
-    public function __construct(array $config)
+    public function __construct(\PDO $pdo)
     {
-        $dsn = $config['driver'] . ':host=' . $config['host'] . ';dbname=' . $config['name'] . ';';
-        $this->pdo = new \PDO($dsn, $config['user'], $config['password']);
+        $this->pdo = $pdo;
     }
 
     public function create(NewUser $newUser): UuidInterface
