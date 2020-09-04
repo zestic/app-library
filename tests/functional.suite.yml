@@ -8,5 +8,9 @@
 actor: FunctionalTester
 modules:
     enabled:
-        # add a framework module here
+        - Asserts
+        - Db:
+            dsn: 'mysql:host=localhost;dbname=user_lib'
+            user: 'root'
+            password: 'password1'
         - \Helper\Functional

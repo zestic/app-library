@@ -4,20 +4,27 @@
   "description": "",
   "keywords": [],
   "license": "",
+  "config": {
+    "sort-packages": true
+  },
   "require": {
+    "php": "^7.4",
     "firebase/php-jwt": "^5.2.0",
     "laminas/laminas-authentication": "^2.7@dev",
     "laminas/laminas-db": "^2.11@dev",
     "nesbot/carbon": "^2.39",
-    "php": "^7.4",
     "psr/container": "^1.0",
     "ramsey/uuid": "^4.0@dev",
+    "robmorgan/phinx": "dev-master",
+    "symfony/dotenv": "^5.2@dev",
     "tuupola/cors-middleware": "^0.7.0",
     "xaddax/factories": "dev-master"
   },
   "require-dev": {
     "codeception/aspect-mock": "dev-master",
-    "codeception/codeception": "^2.3.8"
+    "codeception/codeception": "^4.0",
+    "codeception/module-asserts": "dev-master",
+    "codeception/module-db": "dev-master"
   },
   "minimum-stability": "dev",
   "autoload": {

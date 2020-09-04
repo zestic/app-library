@@ -30,18 +30,22 @@ class CreateUsersTable extends AbstractMigration
      * Remember to call "create()" or "update()" and NOT "save()" when working
      * with the Table class.
      */
-    public function change()
+    public function up()
     {
-        $table = $this->table('users', ['id' => false, 'primary_key' => 'id']);
-        $table
+        ($this->table('users', ['id' => false, 'primary_key' => 'id']))
             ->addColumn('email', 'char', ['limit' => 255])
             ->addColumn('id', 'uuid')
             ->addColumn('password', 'char', ['limit' => 255])
-            ->addColumn('person_id', 'char', ['limit' => 8])
+            ->addColumn('person_id', 'char', ['limit' => 235, 'null' => true])
             ->addColumn('username', 'char', ['limit' => 50])
             ->addTimestamps()
             ->addIndex('email', ['unique' => true])
             ->addIndex('username', ['unique' => true])
             ->create();
+    }
+
+    public function down()
+    {
+        $this->table('users')->drop()->save();
     }
 }
