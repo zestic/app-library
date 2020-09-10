@@ -17,7 +17,7 @@
     "ramsey/uuid": "^4.0@dev",
     "robmorgan/phinx": "dev-master",
     "symfony/dotenv": "^5.2@dev",
-    "tuupola/cors-middleware": "^0.7.0",
+    "tuupola/cors-middleware": "^1.2.0",
     "xaddax/factories": "dev-master"
   },
   "require-dev": {
