@@ -7,5 +7,5 @@ use Mezzio\Authentication\UserInterface as MezzioInterface;
 
 interface UserInterface extends MezzioInterface
 {
-    public function getPersonId(): string;
+    public function getPersonId();
 }

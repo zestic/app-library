@@ -5,8 +5,8 @@ namespace App\Authenticate;
 
 use App\Entity\Interfaces\UserInterface;
 use App\Entity\User;
+use App\Interactor\FindPersonByIdInterface;
 use App\Jwt\Interactor\CreateJwtToken;
-use Firebase\JWT\JWT;
 use Laminas\Authentication\Adapter\ValidatableAdapterInterface;
 
 final class AuthenticateUsernamePassword
@@ -15,16 +15,20 @@ final class AuthenticateUsernamePassword
     private $authAdapter;
     /** @var \App\Jwt\Interactor\CreateJwtToken */
     private $createJwtToken;
+    /** @var \App\Interactor\FindPersonByIdInterface */
+    private $findPersonById;
 
     public function __construct(
         ValidatableAdapterInterface $authAdapter,
-        CreateJwtToken $createJwtToken
+        CreateJwtToken $createJwtToken,
+        FindPersonByIdInterface $findPersonById
     ) {
         $this->authAdapter = $authAdapter;
         $this->createJwtToken = $createJwtToken;
+        $this->findPersonById = $findPersonById;
     }
 
-    public function authenticate(string $identity, string $credential): ?string
+    public function authenticate(string $identity, string $credential): array
     {
         $this->authAdapter
             ->setIdentity($identity)
@@ -32,20 +36,28 @@ final class AuthenticateUsernamePassword
         $result = $this->authAdapter->authenticate();
 
         if (!$result->isValid()) {
-            return null;
+            return [
+                'success' => false,
+            ];
         }
 
         $user = $this->getUser();
+        $jwt = $this->createJwtToken->handle($user);
+        $person = $this->findPersonById->find($user->getPersonId());
 
-        return $this->createJwtToken->handle($user);
+        return [
+            'jwt'     => $jwt,
+            'person'  => $person,
+            'success' => true,
+        ];
     }
 
     private function getUser(): UserInterface
     {
         $user = $this->authAdapter->getResultRowObject();
         $details = [
-            'email' => $user->email,
-            'id' => $user->id,
+            'email'    => $user->email,
+            'id'       => $user->id,
             'personId' => $user->person_id,
             'username' => $user->username,
         ];

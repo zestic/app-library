@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Factory\Authenticate;
 
 use App\Authenticate\AuthenticateUsernamePassword;
+use App\Interactor\FindPersonByIdInterface;
 use App\Jwt\Interactor\CreateJwtToken;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Db\Adapter\Adapter;
@@ -38,7 +39,12 @@ final class AuthenticateUsernamePasswordFactory
             $values['callback']
         );
         $createJwtToken = $container->get(CreateJwtToken::class);
+        $findPersonById = $container->get(FindPersonByIdInterface::class);
 
-        return new AuthenticateUsernamePassword($authAdapter, $createJwtToken);
+        return new AuthenticateUsernamePassword(
+            $authAdapter,
+            $createJwtToken,
+            $findPersonById
+        );
     }
 }
