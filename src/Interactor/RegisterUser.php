@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Interactor;
 
-use App\DTO\NewUser;
+use App\Interfaces\NewUserInterface;
 use Ramsey\Uuid\Uuid;
 
 final class RegisterUser
@@ -25,7 +25,7 @@ final class RegisterUser
         $this->updateUser = $updateUser;
     }
 
-    public function register(NewUser $newUser): array
+    public function register(NewUserInterface $newUser): array
     {
         $userId = $this->createUser->create($newUser);
         $person = $this->createPerson->create($newUser);

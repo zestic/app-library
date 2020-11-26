@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Interactor;
 
-use App\DTO\NewUser;
 use App\Exception\UserException;
+use App\Interfaces\NewUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -18,7 +18,7 @@ final class CreateUser
         $this->pdo = $pdo;
     }
 
-    public function create(NewUser $newUser): UuidInterface
+    public function create(NewUserInterface $newUser): UuidInterface
     {
         $username = $newUser->getUsername();
         $query = $this->pdo->query("SELECT id FROM restricted_usernames WHERE username = '$username'");
