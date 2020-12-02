@@ -12,10 +12,11 @@ final class AuthenticateUserOutput extends ObjectType implements OutputType
     public function __construct()
     {
         $config = [
-            'name' => 'AuthenticateUserOutput',
+            'name'   => 'AuthenticateUserOutput',
             'fields' => [
-                'jwt' => ['type' => Type::string()],
-            ]
+                'person' => ['type' => Type::person()],
+                'jwt'    => ['type' => Type::string()],
+            ],
         ];
         parent::__construct($config);
     }
