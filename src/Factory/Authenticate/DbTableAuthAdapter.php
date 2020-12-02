@@ -10,9 +10,13 @@ use Xaddax\Interactor\GatherConfigValues;
 
 final class DbTableAuthAdapter
 {
+    public function __construct(
+        private $configName = 'usersdb',
+    ) { }
+
     public function __invoke(ContainerInterface $container): CallbackCheckAdapter
     {
-        $values = (new GatherConfigValues)($container, 'usersdb');
+        $values = (new GatherConfigValues)($container, $this->configName);
         if (empty($values['credentialValidationCallback'])) {
             $values['credentialValidationCallback'] = function ($hash, $password) {
                 return password_verify($password, $hash);
