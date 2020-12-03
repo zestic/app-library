@@ -6,16 +6,20 @@ namespace App\Factory\Authenticate;
 use App\Authenticate\AuthenticateUsernamePassword;
 use App\Interactor\FindPersonByIdInterface;
 use App\Jwt\Interactor\CreateJwtToken;
+use ConfigValue\GatherConfigValues;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Db\Adapter\Adapter;
 use Psr\Container\ContainerInterface;
-use Xaddax\Interactor\GatherConfigValues;
 
 final class AuthenticateUsernamePasswordFactory
 {
+    public function __construct(
+        private $configName = 'usersdb',
+    ) { }
+
     public function __invoke(ContainerInterface $container): AuthenticateUsernamePassword
     {
-        $values = (new GatherConfigValues)($container, 'usersdb');
+        $values = (new GatherConfigValues)($container, $this->configName);
         if (empty($values['callback'])) {
             $values['callback'] = function ($hash, $password) {
                 return password_verify($password, $hash);
@@ -34,8 +38,8 @@ final class AuthenticateUsernamePasswordFactory
         $authAdapter = new CallbackCheckAdapter(
             $adapter,
             $values['name'],
-            $values['identityColumn'],
-            $values['credentialColumn'],
+            $values['column']['identity'],
+            $values['column']['credential'],
             $values['callback']
         );
         $createJwtToken = $container->get(CreateJwtToken::class);

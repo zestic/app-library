@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\Factory\Authenticate;
 
+use ConfigValue\GatherConfigValues;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Db\Adapter\Adapter;
 use Psr\Container\ContainerInterface;
-use Xaddax\Interactor\GatherConfigValues;
 
 final class DbTableAuthAdapter
 {
@@ -36,8 +36,8 @@ final class DbTableAuthAdapter
         return new CallbackCheckAdapter(
             $adapter,
             $values['tableName'],
-            $values['identityColumn'],
-            $values['credentialColumn'],
+            $values['column']['identity'],
+            $values['column']['credential'],
             $values['credentialValidationCallback']
         );
     }
