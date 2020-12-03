@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Factory\Authenticate;
 
 use App\Authenticate\AuthenticateUsernamePassword;
-use App\Interactor\FindPersonByIdInterface;
 use App\Jwt\Interactor\CreateJwtToken;
 use ConfigValue\GatherConfigValues;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
@@ -14,41 +13,46 @@ use Psr\Container\ContainerInterface;
 final class AuthenticateUsernamePasswordFactory
 {
     public function __construct(
-        private $configName = 'usersdb',
+        private $configName = 'users',
     ) { }
 
     public function __invoke(ContainerInterface $container): AuthenticateUsernamePassword
     {
-        $values = (new GatherConfigValues)($container, $this->configName);
-        if (empty($values['callback'])) {
-            $values['callback'] = function ($hash, $password) {
+        $authConfig = (new GatherConfigValues)($container, 'graphqlauth');
+        $config = $authConfig[$this->configName];
+        if (empty($config['callback'])) {
+            $config['callback'] = function ($hash, $password) {
                 return password_verify($password, $hash);
             };
         }
         $adapter = new Adapter(
             [
-                'database' => $values['schema'],
+                'database' => $config['schema'],
                 'driver'   => 'pdo_mysql',
-                'hostname' => $values['host'],
-                'password' => $values['password'],
-                'port'     => $values['port'],
-                'username' => $values['user'],
+                'hostname' => $config['host'],
+                'password' => $config['password'],
+                'port'     => $config['port'],
+                'username' => $config['user'],
             ]
         );
         $authAdapter = new CallbackCheckAdapter(
             $adapter,
-            $values['name'],
-            $values['column']['identity'],
-            $values['column']['credential'],
-            $values['callback']
+            $config['name'],
+            $config['column']['identity'],
+            $config['column']['credential'],
+            $config['callback']
         );
+
+        $class = $config['class'];
+        $authenticationResponse = $container->get($class['authenticationResponse']);
         $createJwtToken = $container->get(CreateJwtToken::class);
-        $findPersonById = $container->get(FindPersonByIdInterface::class);
+        $findPersonById = $container->get($class['findPerson']);
 
         return new AuthenticateUsernamePassword(
             $authAdapter,
             $createJwtToken,
-            $findPersonById
+            $findPersonById,
+            $authenticationResponse
         );
     }
 }

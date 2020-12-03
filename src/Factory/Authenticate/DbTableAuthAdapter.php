@@ -11,34 +11,35 @@ use Psr\Container\ContainerInterface;
 final class DbTableAuthAdapter
 {
     public function __construct(
-        private $configName = 'usersdb',
+        private $configName = 'users',
     ) { }
 
     public function __invoke(ContainerInterface $container): CallbackCheckAdapter
     {
-        $values = (new GatherConfigValues)($container, $this->configName);
-        if (empty($values['credentialValidationCallback'])) {
-            $values['credentialValidationCallback'] = function ($hash, $password) {
+        $authConfig = (new GatherConfigValues)($container, 'graphqlauth');
+        $config = $authConfig[$this->configName];
+        if (empty($config['credentialValidationCallback'])) {
+            $config['credentialValidationCallback'] = function ($hash, $password) {
                 return password_verify($password, $hash);
             };
         }
         $adapter = new Adapter(
             [
-                'database' => $values['schema'],
+                'database' => $config['schema'],
                 'driver'   => 'Pdo_Mysql',
-                'hostname' => $values['host'],
-                'password' => $values['password'],
-                'port'     => $values['port'],
-                'username' => $values['user'],
+                'hostname' => $config['host'],
+                'password' => $config['password'],
+                'port'     => $config['port'],
+                'username' => $config['user'],
             ]
         );
 
         return new CallbackCheckAdapter(
             $adapter,
-            $values['tableName'],
-            $values['column']['identity'],
-            $values['column']['credential'],
-            $values['credentialValidationCallback']
+            $config['tableName'],
+            $config['column']['identity'],
+            $config['column']['credential'],
+            $config['credentialValidationCallback']
         );
     }
 }
