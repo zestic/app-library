@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\GraphQL\Query;
 
 use GraphQL\Type\Definition\FieldDefinition;
-use App\GraphQL\Type\Output;
+use App\GraphQL\Type\OutputType;
 use App\GraphQL\Type\Type;
 
 final class GetAppStateQuery extends FieldDefinition
@@ -16,7 +16,7 @@ final class GetAppStateQuery extends FieldDefinition
                 'personId' => Type::nonNull(Type::string()),
             ],
             'name' => 'getAppState',
-            'type' => Output::getAppState(),
+            'type' => OutputType::getAppState(),
         ];
         parent::__construct($config);
     }
