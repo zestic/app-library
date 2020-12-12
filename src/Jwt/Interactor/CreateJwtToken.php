@@ -22,12 +22,15 @@ class CreateJwtToken
         $this->tokenDataGenerator = $tokenDataGenerator;
     }
 
-    public function handle(UserInterface $user): string
+    public function handle(UserInterface $user): array
     {
         $tokenData = $this->tokenDataGenerator->generate($user);
         $data = $tokenData->getData();
-        $data['exp'] = Carbon::now()->addSecond($this->config->getTokenTtl())->getTimestamp();
+        $expires = Carbon::now()->addSecond($this->config->getTokenTtl())->getTimestamp();
+        $data['exp'] = $expires;
 
-        return JWT::encode($data, $this->config->getPrivateKey(), $this->config->getAlgorithm());
-    }
+        return [
+            JWT::encode($data, $this->config->getPrivateKey(), $this->config->getAlgorithm()),
+            $expires,
+        ];}
 }

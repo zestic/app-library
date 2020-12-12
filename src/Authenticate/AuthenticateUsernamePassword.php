@@ -47,10 +47,10 @@ final class AuthenticateUsernamePassword
         }
 
         $user = $this->getUser();
-        $jwt = $this->createJwtToken->handle($user);
+        [$jwt, $expiresAt] = $this->createJwtToken->handle($user);
         $person = $this->findPersonById->find($user->getPersonId());
 
-        return $this->authenticationResponse->response($person, $jwt);
+        return $this->authenticationResponse->response($person, $jwt, $expiresAt);
     }
 
     private function getUser(): UserInterface

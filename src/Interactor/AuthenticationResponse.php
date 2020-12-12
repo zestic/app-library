@@ -7,12 +7,13 @@ use App\Entity\Interfaces\PersonInterface;
 
 final class AuthenticationResponse implements AuthenticationResponseInterface
 {
-    public function response(PersonInterface $person, string $jwt): array
+    public function response(PersonInterface $person, string $jwt, int $expiresAt): array
     {
         return [
-            'jwt'     => $jwt,
-            'person'  => $person,
-            'success' => true,
+            'expiresAt' => $expiresAt,
+            'jwt'       => $jwt,
+            'person'    => $person,
+            'success'   => true,
         ];
     }
 }

@@ -7,5 +7,5 @@ use App\Entity\Interfaces\PersonInterface;
 
 interface AuthenticationResponseInterface
 {
-    public function response(PersonInterface $person, string $jwt): array;
+    public function response(PersonInterface $person, string $jwt, int $expiresAt): array;
 }
