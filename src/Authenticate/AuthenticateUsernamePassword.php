@@ -6,7 +6,7 @@ namespace App\Authenticate;
 use App\Entity\User;
 use App\Jwt\Interactor\CreateJwtToken;
 use Laminas\Authentication\Adapter\ValidatableAdapterInterface;
-use Zestic\Contracts\Authenticate\AuthenticationResponseInterface;
+use Zestic\Contracts\Authentication\AuthenticationResponseInterface;
 use Zestic\Contracts\Person\FindPersonByIdInterface;
 use Zestic\Contracts\User\UserInterface;
 
