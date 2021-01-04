@@ -19,7 +19,8 @@
     "ramsey/uuid": "^4.0@dev",
     "robmorgan/phinx": "dev-master",
     "symfony/dotenv": "^5.2@dev",
-    "tuupola/cors-middleware": "^1.2.0"
+    "tuupola/cors-middleware": "^1.2.0",
+    "zestic/contracts": "^0.1"
   },
   "require-dev": {
     "codeception/aspect-mock": "dev-master",
