@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Authenticate;
 
 use App\Interactor\AuthenticationResponse;
-use App\Interactor\AuthenticationResponseInterface;
-use App\Interactor\FindPersonByIdInterface;
+use Zestic\Contracts\Authenticate\AuthenticationResponseInterface;
+use Zestic\Contracts\Person\FindPersonByIdInterface;
 
 final class ConfigProvider
 {
