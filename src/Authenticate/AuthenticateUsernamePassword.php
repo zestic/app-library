@@ -3,35 +3,21 @@ declare(strict_types=1);
 
 namespace App\Authenticate;
 
-use App\Entity\Interfaces\UserInterface;
 use App\Entity\User;
-use App\Interactor\AuthenticationResponseInterface;
-use App\Interactor\FindPersonByIdInterface;
 use App\Jwt\Interactor\CreateJwtToken;
 use Laminas\Authentication\Adapter\ValidatableAdapterInterface;
+use Zestic\Contracts\Authenticate\AuthenticationResponseInterface;
+use Zestic\Contracts\Person\FindPersonByIdInterface;
+use Zestic\Contracts\User\UserInterface;
 
 final class AuthenticateUsernamePassword
 {
-    /** @var \Laminas\Authentication\Adapter\ValidatableAdapterInterface */
-    private $authAdapter;
-    /** @var \App\Interactor\AuthenticationResponseInterface */
-    private $authenticationResponse;
-    /** @var \App\Jwt\Interactor\CreateJwtToken */
-    private $createJwtToken;
-    /** @var \App\Interactor\FindPersonByIdInterface */
-    private $findPersonById;
-
     public function __construct(
-        ValidatableAdapterInterface $authAdapter,
-        CreateJwtToken $createJwtToken,
-        FindPersonByIdInterface $findPersonById,
-        AuthenticationResponseInterface $authenticationResponse
-    ) {
-        $this->authAdapter = $authAdapter;
-        $this->authenticationResponse = $authenticationResponse;
-        $this->createJwtToken = $createJwtToken;
-        $this->findPersonById = $findPersonById;
-    }
+        private ValidatableAdapterInterface $authAdapter,
+        private CreateJwtToken $createJwtToken,
+        private FindPersonByIdInterface $findPersonById,
+        private AuthenticationResponseInterface $authenticationResponse,
+    ) { }
 
     public function authenticate(string $identity, string $credential): array
     {
