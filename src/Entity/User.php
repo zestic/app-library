@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Entity\Interfaces\UserInterface;
 use Ramsey\Uuid\Uuid;
+use Zestic\Contracts\User\UserInterface;
 
 final class User implements UserInterface
 {
