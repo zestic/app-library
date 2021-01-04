@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Interactor;
 
-use App\Entity\Interfaces\PersonInterface;
+use Zestic\Contracts\Authenticate\PersonInterface;
 
 final class AuthenticationResponse implements AuthenticationResponseInterface
 {
