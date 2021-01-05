@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace App\Jwt\Interactor;
 
-use App\Entity\Interfaces\UserInterface;
 use App\Jwt\JwtConfiguration;
 use App\Jwt\TokenDataGeneratorInterface;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
+use Zestic\Contracts\User\UserInterface;
 
 class CreateJwtToken
 {
