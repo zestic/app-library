@@ -5,15 +5,13 @@ namespace App\Jwt\Interactor;
 
 use App\Jwt\JwtConfiguration;
 use Firebase\JWT\JWT;
+use Zestic\Contracts\Jwt\DecodeJwtTokenInterface;
 
-class DecodeJwtToken
+class DecodeJwtToken implements DecodeJwtTokenInterface
 {
-    private $config;
-
-    public function __construct(JwtConfiguration $config)
-    {
-        $this->config = $config;
-    }
+    public function __construct(
+        private JwtConfiguration $config,
+    ) { }
 
     public function decode(string $jwt): array
     {
