@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Type\Output;
 
-use App\GraphQL\Type\Object\PersonObject;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\OutputType;
 use GraphQL\Type\Definition\Type;
+use App\GraphQL\Type\ObjectType as AppObjectType;
 
 final class AuthenticateUserOutput extends ObjectType implements OutputType
 {
@@ -17,7 +17,7 @@ final class AuthenticateUserOutput extends ObjectType implements OutputType
             'fields' => [
                 'expiresAt' => ['type' => Type::int()],
                 'jwt'       => ['type' => Type::string()],
-                'person'    => ['type' => new PersonObject()],
+                'person'    => ['type' => AppObjectType::person()],
             ],
         ];
         parent::__construct($config);
