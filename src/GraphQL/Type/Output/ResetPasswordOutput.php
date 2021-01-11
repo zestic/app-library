@@ -5,7 +5,7 @@ namespace App\GraphQL\Type\Output;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\OutputType;
-use App\GraphQL\Type\Type;
+use GraphQL\Type\Definition\Type;
 
 final class ResetPasswordOutput extends ObjectType implements OutputType
 {

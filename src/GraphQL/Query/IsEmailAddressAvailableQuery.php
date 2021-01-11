@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query;
 
+use App\GraphQL\Type\Output\Query\IsEmailAddressAvailableOutput;
 use GraphQL\Type\Definition\FieldDefinition;
-use App\GraphQL\Type\AuthenticationType as Type;
+use GraphQL\Type\Definition\Type;
 
 final class IsEmailAddressAvailableQuery extends FieldDefinition
 {
@@ -14,8 +15,8 @@ final class IsEmailAddressAvailableQuery extends FieldDefinition
             'args' => [
                 'email' => Type::nonNull(Type::string()),
             ],
-            'name'    => 'isEmailAddressAvailable',
-            'type' => Type::IsEmailAddressAvailableOutput(),
+            'name' => 'isEmailAddressAvailable',
+            'type' => new IsEmailAddressAvailableOutput(),
         ];
         parent::__construct($config);
     }

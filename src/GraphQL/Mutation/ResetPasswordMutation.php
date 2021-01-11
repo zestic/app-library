@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\GraphQL\Mutation;
 
 use App\GraphQL\Type\Output\ResetPasswordOutput;
-use App\GraphQL\Type\Type;
 use GraphQL\Type\Definition\FieldDefinition;
+use GraphQL\Type\Definition\Type;
 
 final class ResetPasswordMutation extends FieldDefinition
 {

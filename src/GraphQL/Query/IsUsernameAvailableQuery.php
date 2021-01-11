@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query;
 
+use App\GraphQL\Type\Output\Query\IsUsernameAvailableOutput;
 use GraphQL\Type\Definition\FieldDefinition;
-use App\GraphQL\Type\AuthenticationType as Type;
+use GraphQL\Type\Definition\Type;
 
 final class IsUsernameAvailableQuery extends FieldDefinition
 {
@@ -15,7 +16,7 @@ final class IsUsernameAvailableQuery extends FieldDefinition
                 'username' => Type::nonNull(Type::string()),
             ],
             'name'    => 'isUsernameAvailable',
-            'type' => Type::isUsernameAvailableOutput(),
+            'type' => new IsUsernameAvailableOutput(),
         ];
         parent::__construct($config);
     }
