@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace App\Interactor;
 
 use App\Interfaces\NewUserInterface;
-use Ramsey\Uuid\Uuid;
+use Zestic\Contracts\Person\CreatePersonInterface;
 
 final class RegisterUser
 {
     /** @var \App\Interactor\CreateUser */
     private $createUser;
-    /** @var \App\Interactor\CreatePersonInterface */
+    /** @var \Zestic\Contracts\Person\CreatePersonInterface */
     private $createPerson;
     /** @var \App\Interactor\UpdateUser */
     private $updateUser;
