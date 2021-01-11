@@ -16,7 +16,7 @@ final class GetAppStateQuery extends FieldDefinition
                 'personId' => Type::nonNull(Type::string()),
             ],
             'name' => 'getAppState',
-            'type' => new AppStateOutput(),
+            'type' => new GetAppStateOutput(),
         ];
         parent::__construct($config);
     }
