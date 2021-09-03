@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace App\Factory\Authenticate;
 
+use App\Authenticate\DbTableAuthAdapter;
 use ConfigValue\GatherConfigValues;
-use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Db\Adapter\Adapter;
 use Psr\Container\ContainerInterface;
 
-final class DbTableAuthAdapter
+final class DbTableAuthAdapterFactory
 {
     public function __construct(
         private $configName = 'users',
     ) { }
 
-    public function __invoke(ContainerInterface $container): CallbackCheckAdapter
+    public function __invoke(ContainerInterface $container): DbTableAuthAdapter
     {
         $authConfig = (new GatherConfigValues)($container, 'graphqlauth');
         $config = $authConfig[$this->configName];
@@ -34,12 +34,13 @@ final class DbTableAuthAdapter
             ]
         );
 
-        return new CallbackCheckAdapter(
+        return new DbTableAuthAdapter(
             $adapter,
             $config['tableName'],
             $config['column']['identity'],
             $config['column']['credential'],
-            $config['credentialValidationCallback']
+            $config['credentialValidationCallback'],
+            $config['hasRestrictedUsernames'] ?? false,
         );
     }
 }

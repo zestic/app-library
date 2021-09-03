@@ -9,7 +9,7 @@
     "sort-packages": true
   },
   "require": {
-    "php": "^7.4 | ^8.0",
+    "php": "^8.0",
     "ext-pdo": "*",
     "firebase/php-jwt": "^5.2.0",
     "iampersistent/config-value-component": "^1.1",
