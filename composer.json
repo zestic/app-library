@@ -1,46 +1,46 @@
 {
-  "name": "zestic/app-library",
-  "type": "library",
-  "version": "0.3.0",
-  "description": "",
-  "keywords": [],
-  "license": "",
-  "config": {
-    "sort-packages": true
-  },
-  "require": {
-    "php": "^8.0",
-    "ext-pdo": "*",
-    "firebase/php-jwt": "^5.2.0",
-    "iampersistent/config-value-component": "^1.1",
-    "laminas/laminas-authentication": "^2.7@dev",
-    "laminas/laminas-db": "^2.11@dev",
-    "nesbot/carbon": "^2.39",
-    "psr/container": "^1.0",
-    "ramsey/uuid": "^4.0@dev",
-    "robmorgan/phinx": "^0.12.7",
-    "symfony/dotenv": "^5.2@dev",
-    "tuupola/cors-middleware": "^1.2.0",
-    "yauhenko/composer-version-plugin": "dev-master",
-    "zestic/contracts": "^0.1"
-  },
-  "require-dev": {
-    "codeception/aspect-mock": "dev-master",
-    "codeception/codeception": "^4.1.7",
-    "codeception/module-asserts": "dev-master",
-    "codeception/module-db": "dev-master"
-  },
-  "minimum-stability": "dev",
-  "autoload": {
-    "psr-4": {
-      "App\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\Fixture\\": "tests/_support/Fixture",
-      "Tests\\Functional\\": "tests/functional",
-      "Tests\\Unit\\": "tests/unit"
-    }
-  }
+	"name": "zestic/app-library",
+	"type": "library",
+	"version": "0.3.1",
+	"description": "",
+	"keywords": [],
+	"license": "",
+	"config": {
+		"sort-packages": true
+	},
+	"require": {
+		"php": "^8.0",
+		"ext-pdo": "*",
+		"firebase/php-jwt": "^5.2.0",
+		"iampersistent/config-value-component": "^1.1",
+		"laminas/laminas-authentication": "^2.7@dev",
+		"laminas/laminas-db": "^2.11@dev",
+		"nesbot/carbon": "^2.39",
+		"psr/container": "^1.0",
+		"ramsey/uuid": "^4.0@dev",
+		"robmorgan/phinx": "^0.12.7",
+		"symfony/dotenv": "^5.2@dev",
+		"tuupola/cors-middleware": "^1.2.0",
+		"yauhenko/composer-version-plugin": "dev-master",
+		"zestic/contracts": "^0.1"
+	},
+	"require-dev": {
+		"codeception/aspect-mock": "dev-master",
+		"codeception/codeception": "^4.1.7",
+		"codeception/module-asserts": "dev-master",
+		"codeception/module-db": "dev-master"
+	},
+	"minimum-stability": "dev",
+	"autoload": {
+		"psr-4": {
+			"App\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\Fixture\\": "tests/_support/Fixture",
+			"Tests\\Functional\\": "tests/functional",
+			"Tests\\Unit\\": "tests/unit"
+		}
+	}
 }
