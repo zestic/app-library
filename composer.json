@@ -1,7 +1,7 @@
 {
 	"name": "zestic/app-library",
 	"type": "library",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "",
 	"keywords": [],
 	"license": "",
@@ -13,15 +13,14 @@
 		"ext-pdo": "*",
 		"firebase/php-jwt": "^5.2.0",
 		"iampersistent/config-value-component": "^1.1",
-		"laminas/laminas-authentication": "^2.7@dev",
-		"laminas/laminas-db": "^2.11@dev",
+		"laminas/laminas-authentication": "^2.8.0",
+		"laminas/laminas-db": "^2.11.0",
 		"nesbot/carbon": "^2.39",
 		"psr/container": "^1.0",
 		"ramsey/uuid": "^4.0@dev",
 		"robmorgan/phinx": "^0.12.7",
 		"symfony/dotenv": "^5.2@dev",
 		"tuupola/cors-middleware": "^1.2.0",
-		"yauhenko/composer-version-plugin": "dev-master",
 		"zestic/contracts": "^0.1"
 	},
 	"require-dev": {
