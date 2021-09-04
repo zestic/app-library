@@ -25,10 +25,9 @@ SQL;
 
         $dbAdapter = $this->authAdapter->getDbAdapter();
         $statement = $dbAdapter->createStatement($sql);
-
         $result    = $statement->execute();
 
-        return true;
+        return $result->valid();
     }
 
     private function prepData(array $data): string

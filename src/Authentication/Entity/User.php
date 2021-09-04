@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Authentication\Entity;
 
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Zestic\Contracts\User\UserInterface;
 
 final class User implements UserInterface
@@ -22,7 +23,7 @@ final class User implements UserInterface
         $this->details = $details;
     }
 
-    public function getId(): Uuid
+    public function getId(): UuidInterface
     {
         return Uuid::fromString($this->details['id']);
     }

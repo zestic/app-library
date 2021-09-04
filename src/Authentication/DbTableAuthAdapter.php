@@ -7,6 +7,8 @@ use App\Authentication\Entity\User;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Authentication\Result;
 use Laminas\Db\Adapter\Adapter as DbAdapter;
+use Laminas\Db\Adapter\ParameterContainer;
+use Laminas\Db\ResultSet\ResultSet;
 
 final class DbTableAuthAdapter extends CallbackCheckAdapter
 {
@@ -69,6 +71,22 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
     public function getTableName(): string
     {
         return $this->tableName;
+    }
+
+    public function findUserByParameter(string $parameter, $value): ?User
+    {
+        $sql = <<<SQL
+SELECT *
+FROM {$this->tableName}
+WHERE `{$parameter}` = ?
+SQL;
+        $results = $this->laminasDb->query($sql, [$value], new ResultSet(ResultSet::TYPE_ARRAY));
+
+        if (!$user = $results->current()) {
+            return null;
+        }
+
+        return new User($user['id'], [], $user);
     }
 }
 
