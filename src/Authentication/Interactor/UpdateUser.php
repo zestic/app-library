@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Authenticate;
+namespace App\Authentication\Interactor;
 
-use App\Authenticate\DbTableAuthAdapter;
+use App\Authentication\DbTableAuthAdapter;
 use Ramsey\Uuid\UuidInterface;
 
 final class UpdateUser

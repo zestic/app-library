@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Authenticate;
+namespace App\Authentication;
 
-use App\Interactor\AuthenticationResponse;
 use Zestic\Contracts\Authentication\AuthenticationResponseInterface;
 use Zestic\Contracts\Person\FindPersonByIdInterface;
 

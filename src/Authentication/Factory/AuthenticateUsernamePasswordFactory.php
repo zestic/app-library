@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Factory\Authenticate;
+namespace App\Authentication\Factory;
 
-use App\Authenticate\AuthenticateUsernamePassword;
+use App\Authentication\Interactor\AuthenticateUsernamePassword;
 use App\Jwt\Interactor\CreateJwtToken;
 use ConfigValue\GatherConfigValues;
 use Psr\Container\ContainerInterface;

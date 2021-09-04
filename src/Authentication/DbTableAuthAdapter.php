@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Authenticate;
+namespace App\Authentication;
 
-use App\Entity\User;
+use App\Authentication\Entity\User;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Authentication\Result;
 use Laminas\Db\Adapter\Adapter as DbAdapter;

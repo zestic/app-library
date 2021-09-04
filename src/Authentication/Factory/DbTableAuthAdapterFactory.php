@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Factory\Authenticate;
+namespace App\Authentication\Factory;
 
-use App\Authenticate\DbTableAuthAdapter;
+use App\Authentication\DbTableAuthAdapter;
 use ConfigValue\GatherConfigValues;
 use Laminas\Db\Adapter\Adapter;
 use Psr\Container\ContainerInterface;

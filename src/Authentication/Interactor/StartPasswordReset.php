@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Interactor;
+namespace App\Authentication\Interactor;
 
 use Zestic\Contracts\User\UserInterface;
 use App\Entity\User;

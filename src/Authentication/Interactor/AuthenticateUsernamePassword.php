@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Authenticate;
+namespace App\Authentication\Interactor;
 
+use App\Authentication\DbTableAuthAdapter;
 use App\Jwt\Interactor\CreateJwtToken;
 use Zestic\Contracts\Authentication\AuthenticationResponseInterface;
 use Zestic\Contracts\Person\FindPersonByIdInterface;

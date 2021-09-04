@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Factory;
+namespace App\Authentication\Factory;
 
-use App\Interactor\StartPasswordReset;
+use App\Authentication\Interactor\StartPasswordReset;
 use Psr\Container\ContainerInterface;
 
 final class StartPasswordResetFactory

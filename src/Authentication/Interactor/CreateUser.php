@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Interactor;
+namespace App\Authentication\Interactor;
 
+use App\Authentication\Interface\NewUserInterface;
 use App\Exception\UserException;
-use App\Interfaces\NewUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 

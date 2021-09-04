@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Factory\Authenticate;
+namespace App\Authentication\Factory;
 
-use App\Authenticate\UpdateUser;
+use App\Authentication\Interactor\UpdateUser;
 use Psr\Container\ContainerInterface;
 
 final class UpdateUserFactory
