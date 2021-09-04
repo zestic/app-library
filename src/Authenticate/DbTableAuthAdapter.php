@@ -25,9 +25,19 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
         );
     }
 
+    public function getDbAdapter(): DbAdapter
+    {
+        return $this->laminasDb;
+    }
+
     public function hasRestrictedUsernames(): bool
     {
         return $this->hasRestrictedUsernames;
+    }
+
+    public function getTableName(): string
+    {
+        return $this->tableName;
     }
 }
 

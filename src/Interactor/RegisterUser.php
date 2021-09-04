@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Interactor;
 
+use App\Authenticate\UpdateUser;
 use App\Interfaces\NewUserInterface;
 use Zestic\Contracts\Person\CreatePersonInterface;
 
@@ -12,7 +13,7 @@ final class RegisterUser
     private $createUser;
     /** @var \Zestic\Contracts\Person\CreatePersonInterface */
     private $createPerson;
-    /** @var \App\Interactor\UpdateUser */
+    /** @var \App\Authenticate\UpdateUser */
     private $updateUser;
 
     public function __construct(

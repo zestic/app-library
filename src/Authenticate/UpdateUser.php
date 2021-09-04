@@ -1,30 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Interactor;
+namespace App\Authenticate;
 
+use App\Authenticate\DbTableAuthAdapter;
 use Ramsey\Uuid\UuidInterface;
 
 final class UpdateUser
 {
-    /** @var \PDO */
-    private $pdo;
-
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
+    public function __construct(
+        private DbTableAuthAdapter $authAdapter
+    ) {
     }
 
     public function update(UuidInterface $id, array $data): bool
     {
         $setData = $this->prepData($data);
+
         $sql = <<<SQL
-UPDATE users
+UPDATE {$this->authAdapter->getTableName()}
 SET $setData
 WHERE id = '{$id->toString()}';
 SQL;
 
-        return (bool) $this->pdo->exec($sql);
+        $dbAdapter = $this->authAdapter->getDbAdapter();
+        $statement = $dbAdapter->createStatement($sql);
+
+        $result    = $statement->execute();
+
+        return true;
     }
 
     private function prepData(array $data): string
