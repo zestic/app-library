@@ -55,7 +55,6 @@ SQL;
         $user = $this->pdo->query($sql);
 
         return new User($user['id'], [], $user);
-
     }
 
     private function generateToken(): string
