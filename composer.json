@@ -1,10 +1,8 @@
 {
   "name": "zestic/app-library",
   "type": "library",
-  "version": "0.4.1",
   "description": "",
-  "keywords": [],
-  "license": "",
+  "license": "proprietary",
   "config": {
     "sort-packages": true
   },
