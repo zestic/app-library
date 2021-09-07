@@ -28,7 +28,7 @@ final class ConfigProvider
                     'credential' => 'password',
                     'identity'   => 'username',
                 ],
-                'name'   => 'users',
+                'tableName'   => 'users',
             ],
         ];
     }
