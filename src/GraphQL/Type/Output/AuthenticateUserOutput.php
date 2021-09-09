@@ -8,7 +8,7 @@ use GraphQL\Type\Definition\OutputType;
 use GraphQL\Type\Definition\Type;
 use App\GraphQL\Type\ObjectType as AppObjectType;
 
-class AuthenticateUserOutput extends ObjectType implements OutputType
+final class AuthenticateUserOutput extends ObjectType implements OutputType
 {
     public function __construct()
     {
