@@ -9,16 +9,16 @@ use GraphQL\Type\Definition\Type as BaseType;
 
 abstract class Type extends BaseType
 {
-    private static $paginateInput;
-    private static $paginationObject;
+    private static $paginate;
+    private static $pagination;
 
-    public static function paginationInput()
+    public static function paginate()
     {
-        return self::$paginateInput ?: (self::$paginateInput = new PaginateInput());
+        return self::$paginate ?: (self::$paginate = new PaginateInput());
     }
 
-    public static function paginationObject()
+    public static function pagination()
     {
-        return self::$paginationObject ?: (self::$paginationObject = new PaginationObject());
+        return self::$pagination ?: (self::$pagination = new PaginationObject());
     }
 }
