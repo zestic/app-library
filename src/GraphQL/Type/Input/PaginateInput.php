@@ -13,7 +13,6 @@ final class PaginateInput extends InputObjectType
         $config = [
             'name'   => 'Paginate',
             'fields' => [
-                'search'     => ['type' => BaseType::string()],
                 'startIndex' => ['type' => BaseType::int()],
                 'stopIndex'  => ['type' => BaseType::int()],
             ],
