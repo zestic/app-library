@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Authentication\Interface;
 
-interface NewUserInterface
+interface NewAuthLookupInterface
 {
     public function getEmail(): string;
     public function getPassword(): string;

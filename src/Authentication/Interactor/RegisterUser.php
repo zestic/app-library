@@ -9,23 +9,23 @@ use Zestic\Contracts\Person\CreatePersonInterface;
 final class RegisterUser
 {
     public function __construct(
-        private CreateUser $createUser,
-        private CreatePersonInterface $createPerson,
-        private UpdateUser $updateUser,
+        private CreateAuthLookup $createAuthLookup,
+        private CreateUserInterface $createUser,
+        private UpdateAuthLookup $updateAuthLookup,
     ) {
     }
 
     public function register(NewUserInterface $newUser): array
     {
-        $userId = $this->createUser->create($newUser);
-        $person = $this->createPerson->create($newUser);
+        $lookupId = $this->createAuthLookup->create($newUser);
+        $user = $this->createUser->create($newUser);
         $data = [
-            'person_id' => $person->getId(),
+            'user_id' => $user->getId(),
         ];
-        $this->updateUser->update($userId, $data);
+        $this->updateAuthLookup->update($lookupId, $data);
 
         return [
-            'person' => $person,
+            'user' => $user,
         ];
     }
 }

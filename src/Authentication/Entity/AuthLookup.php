@@ -5,22 +5,15 @@ namespace App\Authentication\Entity;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Zestic\Contracts\User\UserInterface;
+use Zestic\Contracts\Authentication\AuthLookupInterface;
 
-final class User implements UserInterface
+final class AuthLookup implements AuthLookupInterface
 {
-    /** @var array */
-    private $details;
-    /** @var string */
-    private $identity;
-    /** @var string[] */
-    private $roles;
-
-    public function __construct(string $identity, array $roles = [], array $details = [])
-    {
-        $this->identity = $identity;
-        $this->roles = $roles;
-        $this->details = $details;
+    public function __construct(
+        private string $identity,
+        private array $roles = [],
+        private array $details = [],
+    ) {
     }
 
     public function getId(): UuidInterface
@@ -28,9 +21,9 @@ final class User implements UserInterface
         return Uuid::fromString($this->details['id']);
     }
 
-    public function getPersonId(): string
+    public function getUserId(): string
     {
-        return $this->details['personId'];
+        return $this->details['userId'];
     }
 
     public function getDetail(string $name, $default = null)

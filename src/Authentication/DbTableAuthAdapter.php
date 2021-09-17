@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Authentication;
 
-use App\Authentication\Entity\User;
+use App\Authentication\Entity\AuthLookup;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Authentication\Result;
 use Laminas\Db\Adapter\Adapter as DbAdapter;
@@ -41,7 +41,7 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
         return $this->hasRestrictedUsernames;
     }
 
-    public function authenticateUser(): ?User
+    public function authenticateUser(): ?AuthLookup
     {
         $this->result = $this->authenticate();
 
@@ -56,11 +56,11 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
         $details = [
             'email'    => $user->email,
             'id'       => $user->id,
-            'personId' => $user->person_id,
+            'userId'   => $user->user_id,
             'username' => $user->username,
         ];
 
-        return new User($this->getIdentity(), [], $details);
+        return new AuthLookup($this->getIdentity(), [], $details);
     }
 
     public function getResult(): ?Result
@@ -73,7 +73,7 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
         return $this->tableName;
     }
 
-    public function findUserByParameter(string $parameter, $value): ?User
+    public function findAuthLookupByParameter(string $parameter, $value): ?AuthLookup
     {
         $sql = <<<SQL
 SELECT *
@@ -82,11 +82,11 @@ WHERE `{$parameter}` = ?
 SQL;
         $results = $this->laminasDb->query($sql, [$value], new ResultSet(ResultSet::TYPE_ARRAY));
 
-        if (!$user = $results->current()) {
+        if (!$authLookup = $results->current()) {
             return null;
         }
 
-        return new User($user['id'], [], $user);
+        return new AuthLookup($authLookup['id'], [], $authLookup);
     }
 }
 

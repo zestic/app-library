@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Authentication;
 
 use Zestic\Contracts\Authentication\AuthenticationResponseInterface;
-use Zestic\Contracts\Person\FindPersonByIdInterface;
+use Zestic\Contracts\User\FindUserByIdInterface;
 
 final class ConfigProvider
 {
@@ -22,13 +22,13 @@ final class ConfigProvider
             'users' => [
                 'class'  => [
                     'authenticationResponse' => AuthenticationResponseInterface::class,
-                    'findPerson'             => FindPersonByIdInterface::class,
+                    'findUser'               => FindUserByIdInterface::class,
                 ],
                 'column' => [
                     'credential' => 'password',
                     'identity'   => 'username',
                 ],
-                'tableName'   => 'users',
+                'tableName'   => 'auth_lookups',
             ],
         ];
     }

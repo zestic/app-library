@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
 final class AuthenticateUsernamePasswordFactory
 {
     public function __construct(
-        private $configName = 'users',
+        private $configName = 'auth_lookups',
     ) { }
 
     public function __invoke(ContainerInterface $container): AuthenticateUsernamePassword
@@ -24,12 +24,12 @@ final class AuthenticateUsernamePasswordFactory
         $class = $config['class'];
         $authenticationResponse = $container->get($class['authenticationResponse']);
         $createJwtToken = $container->get(CreateJwtToken::class);
-        $findPersonById = $container->get($class['findPerson']);
+        $findUserById = $container->get($class['findUser']);
 
         return new AuthenticateUsernamePassword(
             $authAdapter,
             $createJwtToken,
-            $findPersonById,
+            $findUserById,
             $authenticationResponse
         );
     }

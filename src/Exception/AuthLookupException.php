@@ -3,6 +3,6 @@ declare(strict_types=1);
 
 namespace App\Exception;
 
-final class UserException extends \Exception
+final class AuthLookupException extends \Exception
 {
 }

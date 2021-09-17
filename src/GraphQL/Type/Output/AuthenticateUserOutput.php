@@ -17,7 +17,7 @@ final class AuthenticateUserOutput extends ObjectType implements OutputType
             'fields' => [
                 'expiresAt' => ['type' => Type::int()],
                 'jwt'       => ['type' => Type::string()],
-                'userInfo'  => ['type' => AppObjectType::userInfo()],
+                'user'      => ['type' => AppObjectType::user()],
             ],
         ];
         parent::__construct($config);

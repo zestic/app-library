@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace App\Jwt;
 
-use Zestic\Contracts\User\UserInterface;
+use Zestic\Contracts\Authentication\AuthLookupInterface;
 
 interface TokenDataGeneratorInterface
 {
-    public function generate(UserInterface $person): TokenData;
+    public function generate(AuthLookupInterface $authLookup): TokenData;
 }

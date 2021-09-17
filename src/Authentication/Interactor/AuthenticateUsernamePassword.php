@@ -6,14 +6,14 @@ namespace App\Authentication\Interactor;
 use App\Authentication\DbTableAuthAdapter;
 use App\Jwt\Interactor\CreateJwtToken;
 use Zestic\Contracts\Authentication\AuthenticationResponseInterface;
-use Zestic\Contracts\Person\FindPersonByIdInterface;
+use Zestic\Contracts\User\FindUserByIdInterface;
 
 final class AuthenticateUsernamePassword
 {
     public function __construct(
         private DbTableAuthAdapter $authAdapter,
         private CreateJwtToken $createJwtToken,
-        private FindPersonByIdInterface $findPersonById,
+        private FindUserByIdInterface $findUserById,
         private AuthenticationResponseInterface $authenticationResponse,
     ) { }
 
@@ -23,16 +23,16 @@ final class AuthenticateUsernamePassword
             ->setIdentity($identity)
             ->setCredential($credential);
 
-        if (!$user = $this->authAdapter->authenticateUser()) {
+        if (!$authLookup = $this->authAdapter->authenticateUser()) {
             return [
                 'reasonCode' => $this->authAdapter->getResult()?->getCode(),
                 'success'    => false,
             ];
         }
 
-        [$jwt, $expiresAt] = $this->createJwtToken->handle($user);
-        $person = $this->findPersonById->find($user->getPersonId());
+        [$jwt, $expiresAt] = $this->createJwtToken->handle($authLookup);
+        $user = $this->findUserById->find($authLookup->getUserId());
 
-        return $this->authenticationResponse->response($person, $jwt, $expiresAt);
+        return $this->authenticationResponse->response($user, $jwt, $expiresAt);
     }
 }

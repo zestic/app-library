@@ -6,7 +6,7 @@ namespace App\Authentication\Interactor;
 use App\Authentication\DbTableAuthAdapter;
 use Ramsey\Uuid\UuidInterface;
 
-final class UpdateUser
+final class UpdateAuthLookup
 {
     public function __construct(
         private DbTableAuthAdapter $authAdapter

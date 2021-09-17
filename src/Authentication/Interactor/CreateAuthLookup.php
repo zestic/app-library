@@ -4,33 +4,30 @@ declare(strict_types=1);
 namespace App\Authentication\Interactor;
 
 use App\Authentication\Interface\NewUserInterface;
-use App\Exception\UserException;
+use App\Exception\AuthLookupException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-final class CreateUser
+final class CreateAuthLookup
 {
-    /** @var \PDO */
-    private $pdo;
-
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
+    public function __construct(
+        private \PDO $pdo,
+    ) {
     }
 
-    public function create(NewUserInterface $newUser): UuidInterface
+    public function create(NewAuthLookupInterface $newAuthLookup): UuidInterface
     {
-        $username = $newUser->getUsername();
+        $username = $newAuthLookup->getUsername();
         $query = $this->pdo->query("SELECT id FROM restricted_usernames WHERE username = '$username'");
         if ($query->fetch()) {
             throw new UserException("'$username' is a restricted username");
         }
         $id = Uuid::uuid4();
-        $password = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
+        $password = password_hash($newAuthLookup->getPassword(), PASSWORD_BCRYPT);
         $sql = <<<SQL
 INSERT INTO users
     (email, id, password, username)
-     VALUES ('{$newUser->getEmail()}', '{$id->toString()}', '$password', '$username');
+     VALUES ('{$newAuthLookup->getEmail()}', '{$id->toString()}', '$password', '$username');
 SQL;
         if (1 === $this->pdo->exec($sql)) {
             return $id;
@@ -38,6 +35,6 @@ SQL;
 
         $err = $this->pdo->errorInfo();
 
-        throw new UserException($err[2]);
+        throw new AuthLookupException($err[2]);
     }
 }

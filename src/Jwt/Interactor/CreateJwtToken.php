@@ -7,7 +7,7 @@ use App\Jwt\JwtConfiguration;
 use App\Jwt\TokenDataGeneratorInterface;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
-use Zestic\Contracts\User\UserInterface;
+use Zestic\Contracts\Authentication\AuthLookupInterface;
 
 class CreateJwtToken
 {
@@ -22,9 +22,9 @@ class CreateJwtToken
         $this->tokenDataGenerator = $tokenDataGenerator;
     }
 
-    public function handle(UserInterface $user): array
+    public function handle(AuthLookupInterface $authLookup): array
     {
-        $tokenData = $this->tokenDataGenerator->generate($user);
+        $tokenData = $this->tokenDataGenerator->generate($authLookup);
         $data = $tokenData->getData();
         $expires = Carbon::now()->addSecond($this->config->getTokenTtl())->getTimestamp();
         $data['exp'] = $expires;

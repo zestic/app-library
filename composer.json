@@ -19,7 +19,7 @@
     "robmorgan/phinx": "^0.12.7",
     "symfony/dotenv": "^5.2",
     "tuupola/cors-middleware": "^1.2.0",
-    "zestic/contracts": "^0.1"
+    "zestic/contracts": "^0.2"
   },
   "require-dev": {
     "codeception/aspect-mock": "dev-master",

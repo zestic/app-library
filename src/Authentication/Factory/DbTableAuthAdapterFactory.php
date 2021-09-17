@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
 final class DbTableAuthAdapterFactory
 {
     public function __construct(
-        private $configName = 'users',
+        private $configName = 'auth_lookups',
     ) { }
 
     public function __invoke(ContainerInterface $container): DbTableAuthAdapter
