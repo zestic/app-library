@@ -7,7 +7,6 @@ use App\Authentication\Entity\AuthLookup;
 use Laminas\Authentication\Adapter\DbTable\CallbackCheckAdapter;
 use Laminas\Authentication\Result;
 use Laminas\Db\Adapter\Adapter as DbAdapter;
-use Laminas\Db\Adapter\ParameterContainer;
 use Laminas\Db\ResultSet\ResultSet;
 
 final class DbTableAuthAdapter extends CallbackCheckAdapter
@@ -16,11 +15,11 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
 
     public function __construct(
         DbAdapter $laminasDb,
-        $tableName = null,
-        $identityColumn = null,
-        $credentialColumn = null,
-        $credentialValidationCallback = null,
-        private $hasRestrictedUsernames = false,
+        $tableName,
+        $identityColumn,
+        $credentialColumn,
+        $credentialValidationCallback,
+        private $hasRestrictedUsernames,
     ) {
         parent::__construct(
             $laminasDb,
@@ -61,6 +60,16 @@ final class DbTableAuthAdapter extends CallbackCheckAdapter
         ];
 
         return new AuthLookup($this->getIdentity(), [], $details);
+    }
+
+    public function getCredentialColumn(): ?string
+    {
+        return $this->credentialColumn;
+    }
+
+    public function getIdentityColumn(): string
+    {
+        return $this->identityColumn;
     }
 
     public function getResult(): ?Result

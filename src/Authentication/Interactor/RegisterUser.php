@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Authentication\Interactor;
 
-use App\Authentication\Interface\NewUserInterface;
-use Zestic\Contracts\Person\CreatePersonInterface;
+use App\Authentication\Interface\NewAuthLookupInterface;
+use Zestic\Contracts\User\CreateUserInterface;
 
 final class RegisterUser
 {
@@ -15,10 +15,10 @@ final class RegisterUser
     ) {
     }
 
-    public function register(NewUserInterface $newUser): array
+    public function register(NewAuthLookupInterface $newAuthLookup): array
     {
-        $lookupId = $this->createAuthLookup->create($newUser);
-        $user = $this->createUser->create($newUser);
+        $lookupId = $this->createAuthLookup->create($newAuthLookup);
+        $user = $this->createUser->create($newAuthLookup);
         $data = [
             'user_id' => $user->getId(),
         ];

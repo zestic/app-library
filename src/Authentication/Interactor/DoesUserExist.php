@@ -3,31 +3,46 @@ declare(strict_types=1);
 
 namespace App\Authentication\Interactor;
 
+use App\Authentication\DbTableAuthAdapter;
+
 final class DoesUserExist
 {
-    /** @var \PDO */
-    private $pdo;
-
-    public function __construct(\PDO $pdo)
-    {
-        $this->pdo = $pdo;
+    public function __construct(
+        private CheckForRestrictedUsername $checkForRestrictedUsername,
+        private DbTableAuthAdapter $authAdapter,
+    ) {
     }
 
     public function isEmailAvailable(string $email): bool
     {
-        $query = $this->pdo->query("SELECT id FROM users WHERE email = '$email'");
+        $sql = <<<SQL
+SELECT id 
+FROM {$this->authAdapter->getTableName()}
+WHERE email = '$email'
+SQL;
+
+        $dbAdapter = $this->authAdapter->getDbAdapter();
+        $statement = $dbAdapter->createStatement($sql);
+        $result    = $statement->execute();
 
         return !(bool) $query->fetch();
     }
 
     public function isUsernameAvailable(string $username): bool
     {
-        $query = $this->pdo->query("SELECT id FROM restricted_usernames WHERE username = '$username'");
-        if ($query->fetch()) {
+        if ($this->checkForRestrictedUsername->isRestricted($username)) {
             return false;
         }
 
-        $query = $this->pdo->query("SELECT id FROM users WHERE username = '$username'");
+        $sql = <<<SQL
+SELECT id 
+FROM {$this->authAdapter->getTableName()}
+WHERE {$this->authAdapter->getIdentityColumn()} = '{$username}';
+SQL;
+
+        $dbAdapter = $this->authAdapter->getDbAdapter();
+        $statement = $dbAdapter->createStatement($sql);
+        $result    = $statement->execute();
 
         return !(bool) $query->fetch();
     }

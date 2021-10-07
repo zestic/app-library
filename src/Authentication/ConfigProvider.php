@@ -58,8 +58,8 @@ final class ConfigProvider
         return [
             'aliases'   => [
                 AuthenticationResponseInterface::class => AuthenticationResponse::class,
-                RegisterUser::class => 'users.registerUser',
-                'users.createUser'           => CreateUserInterface::class,
+                RegisterUser::class                    => 'users.registerUser',
+                'users.createUser'                     => CreateUserInterface::class,
             ],
             'factories' => [
                 'users.authAdapter'                => new DbTableAuthAdapterFactory(),
@@ -68,13 +68,13 @@ final class ConfigProvider
                 'users.createAuthLookup'           => new CreateAuthLookupFactory(),
                 'users.doesUserExist'              => new DoesUserExistFactory(),
                 'users.getAuthLookupByUserId'      => new GetAuthLookupByUserIdFactory(),
-                'users.registerUser'           => new RegisterUserFactory(),
+                'users.registerUser'               => new RegisterUserFactory(),
                 'users.updateAuthLookup'           => new UpdateAuthLookupFactory(),
-                AuthenticateUserHandler::class            => AuthenticateUserHandlerFactory::class,
-                CreateJwtToken::class                     => CreateJwtTokenFactory::class,
-                DecodeJwtToken::class                     => DecodeJwtTokenFactory::class,
-                JwtConfiguration::class                   => JwtConfigurationFactory::class,
-                CorsMiddleware::class                     => CorsMiddlewareFactory::class,
+                AuthenticateUserHandler::class     => AuthenticateUserHandlerFactory::class,
+                CreateJwtToken::class              => CreateJwtTokenFactory::class,
+                DecodeJwtToken::class              => DecodeJwtTokenFactory::class,
+                JwtConfiguration::class            => JwtConfigurationFactory::class,
+                CorsMiddleware::class              => CorsMiddlewareFactory::class,
             ],
         ];
     }

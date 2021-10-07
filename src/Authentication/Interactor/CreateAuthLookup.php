@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace App\Authentication\Interactor;
 
-use App\Authentication\Interface\NewUserInterface;
+use App\Authentication\DbTableAuthAdapter;
+use App\Authentication\Interface\NewAuthLookupInterface;
 use App\Exception\AuthLookupException;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -11,30 +12,28 @@ use Ramsey\Uuid\UuidInterface;
 final class CreateAuthLookup
 {
     public function __construct(
-        private \PDO $pdo,
+        private DbTableAuthAdapter $authAdapter,
     ) {
     }
 
     public function create(NewAuthLookupInterface $newAuthLookup): UuidInterface
     {
         $username = $newAuthLookup->getUsername();
-        $query = $this->pdo->query("SELECT id FROM restricted_usernames WHERE username = '$username'");
-        if ($query->fetch()) {
-            throw new UserException("'$username' is a restricted username");
-        }
         $id = Uuid::uuid4();
         $password = password_hash($newAuthLookup->getPassword(), PASSWORD_BCRYPT);
         $sql = <<<SQL
-INSERT INTO users
+INSERT INTO {$this->authAdapter->getTableName()}
     (email, id, password, username)
      VALUES ('{$newAuthLookup->getEmail()}', '{$id->toString()}', '$password', '$username');
 SQL;
-        if (1 === $this->pdo->exec($sql)) {
+        $dbAdapter = $this->authAdapter->getDbAdapter();
+        $statement = $dbAdapter->createStatement($sql);
+        $result    = $statement->execute();
+
+        if ($result->valid()) {
             return $id;
         }
 
-        $err = $this->pdo->errorInfo();
-
-        throw new AuthLookupException($err[2]);
+        throw new AuthLookupException('There was an problem saving the authentication user');
     }
 }
