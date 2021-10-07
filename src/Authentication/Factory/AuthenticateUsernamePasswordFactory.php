@@ -11,7 +11,7 @@ use Psr\Container\ContainerInterface;
 final class AuthenticateUsernamePasswordFactory
 {
     public function __construct(
-        private $configName = 'auth_lookups',
+        private $configName = 'users',
     ) { }
 
     public function __invoke(ContainerInterface $container): AuthenticateUsernamePassword
