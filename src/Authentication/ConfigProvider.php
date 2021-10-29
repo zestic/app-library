@@ -9,6 +9,7 @@ use App\Authentication\Factory\CreateAuthLookupFactory;
 use App\Authentication\Factory\DbTableAuthAdapterFactory;
 use App\Authentication\Factory\DoesUserExistFactory;
 use App\Authentication\Factory\GetAuthLookupByUserIdFactory;
+use App\Authentication\Factory\GetAuthLookupByUsernameFactory;
 use App\Authentication\Factory\RegisterUserFactory;
 use App\Authentication\Factory\UpdateAuthLookupFactory;
 use App\Authentication\Interactor\RegisterUser;
@@ -68,6 +69,7 @@ final class ConfigProvider
                 'users.createAuthLookup'           => new CreateAuthLookupFactory(),
                 'users.doesUserExist'              => new DoesUserExistFactory(),
                 'users.getAuthLookupByUserId'      => new GetAuthLookupByUserIdFactory(),
+                'users.getAuthLookupByUsername'    => new GetAuthLookupByUsernameFactory(),
                 'users.registerUser'               => new RegisterUserFactory(),
                 'users.updateAuthLookup'           => new UpdateAuthLookupFactory(),
                 AuthenticateUserHandler::class     => AuthenticateUserHandlerFactory::class,
