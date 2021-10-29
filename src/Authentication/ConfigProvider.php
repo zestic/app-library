@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Authentication;
 
+use App\Authentication\Cli\ResetPasswordCommand;
 use App\Authentication\Factory\AuthenticateUsernamePasswordFactory;
 use App\Authentication\Factory\CheckForRestrictedUsernameFactory;
 use App\Authentication\Factory\CreateAuthLookupFactory;
@@ -34,6 +35,7 @@ final class ConfigProvider
         return [
             'dependencies' => $this->getDependencies(),
             'graphqlauth'  => $this->getDefaultAuthSettings(),
+            'laminas-cli'  => $this->getLaminasCli(),
         ];
     }
 
@@ -77,6 +79,15 @@ final class ConfigProvider
                 DecodeJwtToken::class              => DecodeJwtTokenFactory::class,
                 JwtConfiguration::class            => JwtConfigurationFactory::class,
                 CorsMiddleware::class              => CorsMiddlewareFactory::class,
+            ],
+        ];
+    }
+
+    private function getLaminasCli(): array
+    {
+        return [
+            'commands' => [
+                'auth:reset-password'        => ResetPasswordCommand::class,
             ],
         ];
     }
