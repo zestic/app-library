@@ -34,10 +34,8 @@ final class ResetPasswordCommand extends Command
         $password = $input->getArgument('password');
         $config = $input->getOption('config') ?? 'users';
 
-        $findLookup = $this->container->get("{$config}.getAuthLookupByUsername");
-        $lookup = $findLookup->get($username);
-        $updateLookup = $this->container->get("{$config}.updateAuthLookup");
-        $updateLookup->update($lookup->getId(), ['password' => $password]);
+        $updatePassword = $this->container->get("{$config}.updatePasswordByUsername");
+        $updatePassword->update($username, $password);
 
         return Command::SUCCESS;
     }

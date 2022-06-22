@@ -13,6 +13,7 @@ use App\Authentication\Factory\GetAuthLookupByUserIdFactory;
 use App\Authentication\Factory\GetAuthLookupByUsernameFactory;
 use App\Authentication\Factory\RegisterUserFactory;
 use App\Authentication\Factory\UpdateAuthLookupFactory;
+use App\Authentication\Factory\UpdatePasswordByUsernameFactory;
 use App\Authentication\Interactor\RegisterUser;
 use App\Domain\Factory\Command\AuthenticateUserHandlerFactory;
 use App\Domain\Handler\Mutation\AuthenticateUserHandler;
@@ -74,6 +75,7 @@ final class ConfigProvider
                 'users.getAuthLookupByUsername'    => new GetAuthLookupByUsernameFactory(),
                 'users.registerUser'               => new RegisterUserFactory(),
                 'users.updateAuthLookup'           => new UpdateAuthLookupFactory(),
+                'users.updatePasswordByUsername'   => new UpdatePasswordByUsernameFactory(),
                 AuthenticateUserHandler::class     => AuthenticateUserHandlerFactory::class,
                 CreateJwtToken::class              => CreateJwtTokenFactory::class,
                 DecodeJwtToken::class              => DecodeJwtTokenFactory::class,
