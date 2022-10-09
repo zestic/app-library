@@ -25,7 +25,7 @@ SQL;
         $statement = $dbAdapter->createStatement($sql);
         $result    = $statement->execute();
 
-        return !(bool) $query->fetch();
+        return !(bool) $result->getAffectedRows();
     }
 
     public function isUsernameAvailable(string $username): bool
@@ -44,6 +44,6 @@ SQL;
         $statement = $dbAdapter->createStatement($sql);
         $result    = $statement->execute();
 
-        return !(bool) $query->fetch();
+        return !(bool) $result->getAffectedRows();
     }
 }
