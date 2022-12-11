@@ -8,7 +8,7 @@ use App\Authentication\DbTableAuthAdapter;
 final class CheckForRestrictedUsername
 {
     public function __construct(
-        private DbTableAuthAdapter $authAdapter
+        private DbTableAuthAdapter $authAdapter,
     ) {
     }
 
@@ -16,14 +16,14 @@ final class CheckForRestrictedUsername
     {
         $sql = <<<SQL
 SELECT id 
-FROM {$this->authAdapter->getTableName()}
-WHERE username = '{$username}';
+FROM restricted_usernames
+WHERE LOWER(username) = LOWER('{$username}');
 SQL;
 
         $dbAdapter = $this->authAdapter->getDbAdapter();
         $statement = $dbAdapter->createStatement($sql);
         $result    = $statement->execute();
 
-        return true;
+        return (bool) $result->getAffectedRows();
     }
 }
