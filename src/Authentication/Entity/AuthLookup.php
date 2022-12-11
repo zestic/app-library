@@ -21,7 +21,7 @@ final class AuthLookup implements AuthLookupInterface
         return Uuid::fromString($this->details['id']);
     }
 
-    public function getUserId(): string
+    public function getUserId()
     {
         return $this->details['userId'];
     }
