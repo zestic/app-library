@@ -18,7 +18,7 @@ final class DoesUserExist
         $sql = <<<SQL
 SELECT id 
 FROM {$this->authAdapter->getTableName()}
-WHERE email = '$email'
+WHERE LOWER(email) = LOWER('{$email}');
 SQL;
 
         $dbAdapter = $this->authAdapter->getDbAdapter();
@@ -37,7 +37,7 @@ SQL;
         $sql = <<<SQL
 SELECT id 
 FROM {$this->authAdapter->getTableName()}
-WHERE {$this->authAdapter->getIdentityColumn()} = '{$username}';
+WHERE LOWER('{$this->authAdapter->getIdentityColumn()}') = LOWER('{$username}');
 SQL;
 
         $dbAdapter = $this->authAdapter->getDbAdapter();
