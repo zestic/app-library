@@ -12,15 +12,18 @@ final class Files
         private string $url,
     ) { }
 
-    public function write(string $location, string $contents, array $config = []): string
+    public function write(string $location, string $contents, array $config = []): FileDTO
     {
         $this->filesystem->write($location, $contents, $config);
 
-        return $this->getUrl($location);
+        return $this->getFileDTO($location);
     }
 
-    private function getUrl(string $location): string
+    private function getFileDTO(string $location): FileDTO
     {
-        return $this->url . '/' . $location;
+        $mime = $this->filesystem->mimeType($location);
+        $href = $this->url . '/' . $location;
+
+        return new FileDTO($location,  $href, '', $mime);
     }
 }
