@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutation;
+namespace App\GraphQL\Mutation\Operation;
 
-use App\GraphQL\Type\Output\AuthenticateUserOutput;
+use App\GraphQL\Mutation\Output\AuthenticateUserOutput;
+use App\GraphQL\Type\GraphQLType;
 use GraphQL\Type\Definition\FieldDefinition;
-use GraphQL\Type\Definition\Type;
 
 final class AuthenticateUserMutation extends FieldDefinition
 {
@@ -13,8 +13,8 @@ final class AuthenticateUserMutation extends FieldDefinition
     {
         $config = [
             'args' => [
-                'username' => Type::nonNull(Type::string()),
-                'password' => Type::nonNull(Type::string()),
+                'username' => GraphQLType::nonNull(GraphQLType::string()),
+                'password' => GraphQLType::nonNull(GraphQLType::string()),
             ],
             'name' => 'authenticateUser',
             'type' => new AuthenticateUserOutput(),

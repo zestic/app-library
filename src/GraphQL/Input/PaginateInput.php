@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Type\Input;
+namespace App\GraphQL\Input;
 
+use App\GraphQL\Type\GraphQLType;
 use GraphQL\Type\Definition\InputObjectType;
-use GraphQL\Type\Definition\Type as BaseType;
 
 final class PaginateInput extends InputObjectType
 {
@@ -13,8 +13,8 @@ final class PaginateInput extends InputObjectType
         $config = [
             'name'   => 'Paginate',
             'fields' => [
-                'startIndex' => ['type' => BaseType::int()],
-                'stopIndex'  => ['type' => BaseType::int()],
+                'startIndex' => ['type' => GraphQLType::int()],
+                'stopIndex'  => ['type' => GraphQLType::int()],
             ],
         ];
         parent::__construct($config);

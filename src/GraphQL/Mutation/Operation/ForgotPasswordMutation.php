@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutation;
+namespace App\GraphQL\Mutation\Operation;
 
+use App\GraphQL\Type\GraphQLType;
 use App\GraphQL\Type\Output\ForgotPasswordOutput;
 use GraphQL\Type\Definition\FieldDefinition;
-use GraphQL\Type\Definition\Type;
 
 final class ForgotPasswordMutation extends FieldDefinition
 {
@@ -13,7 +13,7 @@ final class ForgotPasswordMutation extends FieldDefinition
     {
         $config = [
             'args' => [
-                'email' => Type::nonNull(Type::string()),
+                'email' => GraphQLType::nonNull(GraphQLType::string()),
             ],
             'name' => 'forgotPassword',
             'type' => new ForgotPasswordOutput(),

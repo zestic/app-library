@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Query;
+namespace App\GraphQL\Query\Operation;
 
+use App\GraphQL\Type\GraphQLType;
 use App\GraphQL\Type\Output\Query\IsUsernameAvailableOutput;
 use GraphQL\Type\Definition\FieldDefinition;
-use GraphQL\Type\Definition\Type;
 
 final class IsUsernameAvailableQuery extends FieldDefinition
 {
@@ -13,7 +13,7 @@ final class IsUsernameAvailableQuery extends FieldDefinition
     {
         $config = [
             'args' => [
-                'username' => Type::nonNull(Type::string()),
+                'username' => GraphQLType::nonNull(GraphQLType::string()),
             ],
             'name'    => 'isUsernameAvailable',
             'type' => new IsUsernameAvailableOutput(),

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Type\Object;
+namespace App\GraphQL\Object;
 
+use App\GraphQL\Type\GraphQLType;
 use GraphQL\Type\Definition\ObjectType;
-use GraphQL\Type\Definition\Type;
 
 final class PaginationObject extends ObjectType
 {
@@ -13,9 +13,9 @@ final class PaginationObject extends ObjectType
         $config = [
             'name'   => 'Pagination',
             'fields' => [
-                'startIndex' => ['type' => Type::int()],
-                'stopIndex'  => ['type' => Type::int()],
-                'total'      => ['type' => Type::int()],
+                'startIndex' => ['type' => GraphQLType::int()],
+                'stopIndex'  => ['type' => GraphQLType::int()],
+                'total'      => ['type' => GraphQLType::int()],
             ],
         ];
         parent::__construct($config);

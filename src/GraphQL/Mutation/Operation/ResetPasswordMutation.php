@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutation;
+namespace App\GraphQL\Mutation\Operation;
 
+use App\GraphQL\Type\GraphQLType;
 use App\GraphQL\Type\Output\ResetPasswordOutput;
 use GraphQL\Type\Definition\FieldDefinition;
-use GraphQL\Type\Definition\Type;
 
 final class ResetPasswordMutation extends FieldDefinition
 {
@@ -13,8 +13,8 @@ final class ResetPasswordMutation extends FieldDefinition
     {
         $config = [
             'args' => [
-                'password'       => Type::nonNull(Type::string()),
-                'verifyPassword' => Type::nonNull(Type::string()),
+                'password'       => GraphQLType::nonNull(GraphQLType::string()),
+                'verifyPassword' => GraphQLType::nonNull(GraphQLType::string()),
             ],
             'name' => 'resetPassword',
             'type' => new ResetPasswordOutput(),

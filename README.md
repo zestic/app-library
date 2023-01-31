@@ -4,8 +4,20 @@
 
 ### GraphQL
 
-In your project `App\GraphQL\Type\ObjectType`
+In your project `App\GraphQL\Type\GraphQLType`
+```php
+<?php
+declare(strict_types=1);
 
+namespace App\GraphQL\Type;
+
+use App\GraphQL\Type;
+
+final class GraphQLType extends Type
+{
+
+}
+```
 Add
 ```php 
     public static function userInfo()

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Type;
+namespace App\GraphQL;
 
-use App\GraphQL\Type\Input\PaginateInput;
-use App\GraphQL\Type\Object\PaginationObject;
+use App\GraphQL\Input\PaginateInput;
+use App\GraphQL\Object\PaginationObject;
 use GraphQL\Type\Definition\Type as BaseType;
 
 abstract class Type extends BaseType

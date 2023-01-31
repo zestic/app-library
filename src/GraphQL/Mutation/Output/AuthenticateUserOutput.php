@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Type\Output;
+namespace App\GraphQL\Mutation\Output;
 
+use App\GraphQL\Type\GraphQLType;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\OutputType;
-use GraphQL\Type\Definition\Type;
-use App\GraphQL\Type\ObjectType as AppObjectType;
 
 final class AuthenticateUserOutput extends ObjectType implements OutputType
 {
@@ -15,9 +14,9 @@ final class AuthenticateUserOutput extends ObjectType implements OutputType
         $config = [
             'name'   => 'AuthenticateUserOutput',
             'fields' => [
-                'expiresAt' => ['type' => Type::int()],
-                'jwt'       => ['type' => Type::string()],
-                'user'      => ['type' => AppObjectType::user()],
+                'expiresAt' => ['type' => GraphQLType::int()],
+                'jwt'       => ['type' => GraphQLType::string()],
+                'user'      => ['type' => GraphQLType::user()],
             ],
         ];
         parent::__construct($config);
