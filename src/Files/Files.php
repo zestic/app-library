@@ -24,6 +24,6 @@ final class Files
         $mime = $this->filesystem->mimeType($location);
         $href = $this->url . '/' . $location;
 
-        return new FileDTO($location,  $href, '', $mime);
+        return new FileDTO($href, $mime, $location);
     }
 }
