@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\GraphQL\Type\Output\Query;
+namespace App\GraphQL\Query\Output;
 
 use App\GraphQL\Type\GraphQLType;
 use GraphQL\Type\Definition\ObjectType;

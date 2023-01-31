@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Query\Operation;
 
+use App\GraphQL\Query\Output\IsUsernameAvailableOutput;
 use App\GraphQL\Type\GraphQLType;
-use App\GraphQL\Type\Output\Query\IsUsernameAvailableOutput;
 use GraphQL\Type\Definition\FieldDefinition;
 
 final class IsUsernameAvailableQuery extends FieldDefinition
