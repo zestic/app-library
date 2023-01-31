@@ -8,11 +8,10 @@ readonly class FileDTO
     public string $id;
 
     public function __construct(
-        public string $filename,
         public string $href,
-        public string $name = '',
         public ?string $mediaType = null,
+        public string $name,
     ) {
-        $this->id = substr($filename, 0, strpos($filename, '.'));
+        $this->id = substr($name, 0, strpos($name, '.'));
     }
 }
