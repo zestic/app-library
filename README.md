@@ -1,10 +1,77 @@
-#Zestic App Library
+# Zestic App Library
 
 ## Authentication
 
 ### GraphQL
 
-In your project `App\GraphQL\Type\GraphQLType`
+In your `App` namespace, create the following directory structure
+```
+- GraphQL
+    - Input
+    - Mutation
+        - Operation
+        - Output
+    - Object
+    - Query
+        - Operation
+        - Output
+```
+
+Then add these files
+`App\GraphQL\Mutation\MutationType`
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\GraphQL\Mutation;
+
+use App\GraphQL\Mutation\Operation\UpdateSomethingMutation;
+use GraphQL\Type\Definition\ObjectType;
+
+final class MutationType extends ObjectType
+{
+    public function __construct()
+    {
+        parent::__construct(
+            [
+                'name'   => 'Mutation',
+                'fields' => [
+                    'updateSomething' => new UpdateSomethingMutation(),
+                ],
+            ]
+        );
+    }
+}
+```
+
+`App\GraphQL\Mutation\QueryType`
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\GraphQL\Query;
+
+use App\GraphQL\Query\Operation\PingQuery;
+use GraphQL\Type\Definition\ObjectType;
+
+final class QueryType extends ObjectType
+{
+    public function __construct()
+    {
+        parent::__construct(
+            [
+                'name'   => 'Query',
+                'fields' => [
+                    'ping'                    => new PingQuery(),
+                ],
+            ],
+        );
+    }
+}
+
+```
+
+`App\GraphQL\Type\GraphQLType`
 ```php
 <?php
 declare(strict_types=1);
