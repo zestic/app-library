@@ -9,7 +9,7 @@
   "require": {
     "php": "^8.0",
     "ext-pdo": "*",
-    "firebase/php-jwt": "^5.2.0",
+    "firebase/php-jwt": "^6.1.0",
     "iampersistent/config-value-component": "^1.1",
     "laminas/laminas-authentication": "^2.8.0",
     "laminas/laminas-db": "^2.11.0",
