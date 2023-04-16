@@ -13,7 +13,7 @@ final class GetAppStateQuery extends FieldDefinition
     {
         $config = [
             'args' => [
-                'personId' => GraphQLType::nonNull(GraphQLType::string()),
+                'userId' => GraphQLType::nonNull(GraphQLType::string()),
             ],
             'name' => 'getAppState',
             'type' => new GetAppStateOutput(),
