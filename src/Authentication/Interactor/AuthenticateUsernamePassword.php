@@ -24,8 +24,11 @@ final class AuthenticateUsernamePassword
             ->setCredential($credential);
 
         if (!$authLookup = $this->authAdapter->authenticateUser()) {
+            $result = $this->authAdapter->getResult();
+
             return [
-                'reasonCode' => $this->authAdapter->getResult()?->getCode(),
+                'messages'   => $result?->getMessages(),
+                'reasonCode' => $result?->getCode(),
                 'success'    => false,
             ];
         }
