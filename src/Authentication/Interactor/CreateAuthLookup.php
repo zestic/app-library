@@ -21,10 +21,11 @@ final class CreateAuthLookup
         $username = $newAuthLookup->getUsername();
         $id = Uuid::uuid4();
         $password = password_hash($newAuthLookup->getPassword(), PASSWORD_BCRYPT);
+        $email = strtolower($newAuthLookup->getEmail());
         $sql = <<<SQL
 INSERT INTO {$this->authAdapter->getTableName()}
     (email, id, password, username)
-     VALUES ('{$newAuthLookup->getEmail()}', '{$id->toString()}', '$password', '$username');
+     VALUES ('{$email}', '{$id->toString()}', '$password', '$username');
 SQL;
         $dbAdapter = $this->authAdapter->getDbAdapter();
         $statement = $dbAdapter->createStatement($sql);
