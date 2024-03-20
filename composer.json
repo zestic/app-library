@@ -7,12 +7,12 @@
     "sort-packages": true
   },
   "require": {
-    "php": "^8.0",
+    "php": "^8.3",
     "ext-pdo": "*",
     "firebase/php-jwt": "^6.1.0",
     "iampersistent/config-value-component": "^1.1",
     "laminas/laminas-authentication": "^2.8.0",
-    "laminas/laminas-db": "^2.11.0",
+    "laminas/laminas-db": "^2.20.x-dev",
     "mezzio/mezzio-authentication": "^1.8.0",
     "nesbot/carbon": "^2.39",
     "psr/container": "^1.0 || ^2.0",
