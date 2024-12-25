@@ -17,14 +17,12 @@ use App\Authentication\Factory\UpdatePasswordByUsernameFactory;
 use App\Authentication\Interactor\RegisterUser;
 use App\Domain\Factory\Command\AuthenticateUserHandlerFactory;
 use App\Domain\Handler\Mutation\AuthenticateUserHandler;
-use App\Factory\CorsMiddlewareFactory;
 use App\Jwt\Factory\CreateJwtTokenFactory;
 use App\Jwt\Factory\DecodeJwtTokenFactory;
 use App\Jwt\Factory\JwtConfigurationFactory;
 use App\Jwt\Interactor\CreateJwtToken;
 use App\Jwt\Interactor\DecodeJwtToken;
 use App\Jwt\JwtConfiguration;
-use Tuupola\Middleware\CorsMiddleware;
 use Zestic\Contracts\Authentication\AuthenticationResponseInterface;
 use Zestic\Contracts\User\CreateUserInterface;
 use Zestic\Contracts\User\FindUserByIdInterface;
@@ -80,7 +78,6 @@ final class ConfigProvider
                 CreateJwtToken::class              => CreateJwtTokenFactory::class,
                 DecodeJwtToken::class              => DecodeJwtTokenFactory::class,
                 JwtConfiguration::class            => JwtConfigurationFactory::class,
-                CorsMiddleware::class              => CorsMiddlewareFactory::class,
             ],
         ];
     }
