@@ -18,7 +18,7 @@
     "psr/container": "^1.0 || ^2.0",
     "ramsey/uuid": "^4.0@dev",
     "robmorgan/phinx": "^0.15.4 || ^0.16",
-    "symfony/dotenv": "^5.2 || ^6.0",
+    "symfony/dotenv": "^7.4 | ^8.0",
     "zestic/contracts": "^0.2"
   },
   "require-dev": {
